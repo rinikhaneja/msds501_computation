@@ -6,9 +6,9 @@
 # to convert every entry to an int so we can compute the total.
 #
 # YOUR TASK (Task 2): Run this script and read the error.
-#   - What type of error is it?
-#   - Which line causes it?
-#   - Write a comment below explaining the cause.
+#   - What type of error is it? TypeError
+#   - Which line causes it? 36
+#   - Write a comment below explaining the cause. Passing
 #
 # YOUR TASK (Task 3): Wrap the risky conversion in try/except.
 #   - Catch the specific error type (not bare except:)
@@ -33,9 +33,13 @@ scores = ['88', '95', 'absent', '72', 'n/a', '84']
 valid = []
 
 for i, s in enumerate(scores):
-    score = int(s)            # <-- this line crashes on bad strings
-    print(f'Score [{i}]: {score}')
-    valid.append(score)
+    try:
+        score = int(s)            # <-- this line crashes on bad strings
+        print(f'Score [{i}]: {score}')
+        valid.append(score)
+    except ValueError:
+        print(f'Bad at [{i}]: {s}')
+
 
 print(f'Total of valid scores: {sum(valid)}')
 print(f'Count of valid scores: {len(valid)}')
